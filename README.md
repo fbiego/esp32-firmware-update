@@ -10,7 +10,8 @@ if you clone this repository
 make the following changes
 
 ./.github/workflows/main.yml
-```                git config --local user.email "your@email.com"
+```
+                git config --local user.email "your@email.com"
                 git config --local user.name "username"
 ```
 
