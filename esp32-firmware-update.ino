@@ -12,7 +12,7 @@
 
 WiFiMulti wifiMulti;
 
-int currentVersion = 2; // increment currentVersion in each release
+int currentVersion = 1; // increment currentVersion in each release
 
 String baseUrl = "https://raw.githubusercontent.com/fbiego/esp32-firmware-update/main/";
 String checkFile = "update.json";
