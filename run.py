@@ -5,6 +5,7 @@ import glob, os
 project = 'esp32-firmware-update'
 binFiles = glob.glob(project + "*.bin")
 	
+#read the arduino sketch
 file = open(project + '.ino', 'r')
 lines = file.readlines()
 file.close()
@@ -22,10 +23,12 @@ for line in lines:
 		baseUrl = line.split('"')[1::2][0]
 	if "String checkFile" in line:
 		checkFile = line.split('"')[1::2][0]
-		
+
+#generate the json file
 updater = open(checkFile, 'w')
 updater.write("{\n\t\"versionCode\" : "+str(versionCode)+",\n\t\"fileName\" : \""+fileName+"\"\n}")
 updater.close()
 
+#rename the binary file
 if len(binFiles) > 0 and binFiles[0] != fileName:
 	os.replace(binFiles[0], fileName)
