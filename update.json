@@ -1,5 +1,4 @@
 {
-  "versionCode": 2,
-  "fileName": "firmware_v1.2.bin",
-  "baseURL": "https://raw.githubusercontent.com/fbiego/esp32-firmware-update/main/"
+	"versionCode" : 2,
+	"fileName" : "firmware_v2.bin"
 }

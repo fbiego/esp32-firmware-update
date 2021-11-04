@@ -14,10 +14,12 @@ WiFiMulti wifiMulti;
 
 int currentVersion = 2; // increment currentVersion in each release
 
+String baseUrl = "https://raw.githubusercontent.com/fbiego/esp32-firmware-update/main/";
+String checkFile = "update.json";
+
 int fwVersion = 0;
 bool fwCheck = false;
-String checkUrl = "https://raw.githubusercontent.com/fbiego/esp32-firmware-update/main/update.json";
-String fwUrl = "", fwName = "";;
+String fwUrl = "", fwName = "";
 
 char * WIFI_SSID = "WLAN1-4A6959";
 char * WIFI_PASS = "5F310FE2122A5EF";
@@ -126,7 +128,7 @@ bool downloadFirmware() {
 
 bool checkFirmware() {
   HTTPClient http;
-  http.begin(checkUrl);
+  http.begin(baseUrl + checkFile);
   int httpCode = http.GET();
   bool stat = false;
   String payload = http.getString();
@@ -136,7 +138,7 @@ bool checkFirmware() {
   if (httpCode == HTTP_CODE_OK) {
     fwVersion = json["versionCode"].as<int>();
     fwName = json["fileName"].as<String>();
-    fwUrl = json["baseURL"].as<String>() + fwName;
+    fwUrl = baseUrl + fwName;
     if (fwVersion > currentVersion) {
       Serial.println("Firmware update available");
       stat = true;
