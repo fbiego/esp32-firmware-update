@@ -12,15 +12,18 @@
 
 WiFiMulti wifiMulti;
 
+/* this info will be read by the python script */
 int currentVersion = 1; // increment currentVersion in each release
 
 String baseUrl = "https://raw.githubusercontent.com/fbiego/esp32-firmware-update/main/";
 String checkFile = "update.json";
+/* end of script data */
 
 int fwVersion = 0;
 bool fwCheck = false;
 String fwUrl = "", fwName = "";
 
+/* your wifi credentials */
 char * WIFI_SSID = "WLAN1-4A6959";
 char * WIFI_PASS = "5F310FE2122A5EF";
 
@@ -176,6 +179,7 @@ void loop() {
   /* check the firmware once connected */
   if ((wifiMulti.run() == WL_CONNECTED) && !fwCheck) {
     fwCheck = true;
+    Serial.println("Wifi connected. Checking for updates");
     if (checkFirmware()) {
       if (SPIFFS.exists("/update.bin")) {
         SPIFFS.remove("/update.bin");
