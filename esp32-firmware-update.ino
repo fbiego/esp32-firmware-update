@@ -160,6 +160,7 @@ bool checkFirmware() {
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("Firmware Updates from Github");
   if (!SPIFFS.begin(FORMAT_SPIFFS_IF_FAILED)) {
     Serial.println("SPIFFS Mount Failed");
     rebootEspWithReason("SPIFFS Mount Failed, rebooting...");
